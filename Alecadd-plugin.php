@@ -38,14 +38,11 @@ class AlecaddPlugin
 
     function deactivate()
     {
-
-
         //flush rewrite rules
         flush_rewrite_rules();
+        
     }
-    function uninstall()
-    {
-    }
+
 
     function custom_post_type()
     {
@@ -64,3 +61,5 @@ if (class_exists('AlecaddPlugin')) {
 register_activation_hook(__FILE__, array($alecaddPlugin, 'activate'));
 
 register_deactivation_hook(__FILE__, array($alecaddPlugin, 'deactivate'));
+
+register_uninstall_hook(__FILE__, array($alecaddPlugin, 'uninstall'));
