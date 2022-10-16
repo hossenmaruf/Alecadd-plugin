@@ -1,0 +1,21 @@
+{
+    "name": "sever/alecadd-plugin",
+    "description": "composer starter",
+    "type": "project",
+    "license": "GPL",
+    "autoload": {
+        "psr-4": {
+            "Sever\\AlecaddPlugin\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "hossenmaruf",
+            "email": "severusmaruf740@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload" : {
+        "psr-4" : {"Inc\\" : "./inc"}
+    }
+}
