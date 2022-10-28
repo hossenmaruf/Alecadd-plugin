@@ -12,10 +12,10 @@
         <div id="tab-1" class="tab-pane active">
 
             <form method="post" action="options.php">
-                <?php 
-                    settings_fields( 'Alecadd_options_group' );
-                    do_settings_sections( 'Alecadd_plugin');
-                    submit_button();
+                <?php
+                settings_fields('Alecadd_options_group');
+                do_settings_sections('Alecadd_plugin');
+                submit_button();
                 ?>
             </form>
 
