@@ -1,0 +1,1 @@
+<h1>My Widgets Manager</h1>

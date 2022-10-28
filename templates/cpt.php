@@ -1,0 +1,1 @@
+<h1>My Custom Post Type Manager</h1>
