@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @package  alecaddPlugin
- */
-
 namespace Inc\Api\Callbacks;
 
 use Inc\Base\BaseController;
@@ -30,15 +26,15 @@ class AdminCallbacks extends BaseController
 		return require_once("$this->plugin_path/templates/widget.php");
 	}
 
-	public function alecaddOptionsGroup($input)
-	{
-		return $input;
-	}
+	// public function alecaddOptionsGroup( $input )
+	// {
+	// 	return $input;
+	// }
 
-	public function alecaddAdminSection()
-	{
-		echo 'Check this beautiful section!';
-	}
+	// public function alecaddAdminSection()
+	// {
+	// 	echo 'Check this beautiful section!';
+	// }
 
 	public function alecaddTextExample()
 	{

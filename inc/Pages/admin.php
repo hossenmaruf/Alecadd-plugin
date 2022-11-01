@@ -50,7 +50,7 @@ class Admin extends BaseController
 				'page_title' => 'Alecadd Plugin',
 				'menu_title' => 'Alecadd',
 				'capability' => 'manage_options',
-				'menu_slug' => 'Alecadd_plugin',
+				'menu_slug' => 'alecadd_plugin',
 				'callback' => array($this->callbacks, 'adminDashboard'),
 				'icon_url' => 'dashicons-store',
 				'position' => 1
@@ -62,28 +62,28 @@ class Admin extends BaseController
 	{
 		$this->subpages = array(
 			array(
-				'parent_slug' => 'Alecadd_plugin',
-				'page_title' => 'Custom Post Types',
-				'menu_title' => 'CPT',
-				'capability' => 'manage_options',
-				'menu_slug' => 'Alecadd_cpt',
-				'callback' => array($this->callbacks, 'adminCpt')
+				'parent_slug' => 'alecadd_plugin',
+				'page_title'  => 'Custom Post Types',
+				'menu_title'  => 'CPT',
+				'capability'  => 'manage_options',
+				'menu_slug'   => 'alecadd_cpt',
+				'callback'    => array($this->callbacks, 'adminCpt')
 			),
 			array(
-				'parent_slug' => 'Alecadd_plugin',
-				'page_title' => 'Custom Taxonomies',
-				'menu_title' => 'Taxonomies',
-				'capability' => 'manage_options',
-				'menu_slug' => 'Alecadd_taxonomies',
-				'callback' => array($this->callbacks, 'adminTaxonomy')
+				'parent_slug' => 'alecadd_plugin',
+				'page_title'  => 'Custom Taxonomies',
+				'menu_title'  => 'Taxonomies',
+				'capability'  => 'manage_options',
+				'menu_slug'   => 'alecadd_taxonomies',
+				'callback'    => array($this->callbacks, 'adminTaxonomy')
 			),
 			array(
-				'parent_slug' => 'Alecadd_plugin',
-				'page_title' => 'Custom Widgets',
-				'menu_title' => 'Widgets',
-				'capability' => 'manage_options',
-				'menu_slug' => 'Alecadd_widgets',
-				'callback' => array($this->callbacks, 'adminWidget')
+				'parent_slug' => 'alecadd_plugin',
+				'page_title'  => 'Custom Widgets',
+				'menu_title'  => 'Widgets',
+				'capability'  => 'manage_options',
+				'menu_slug'   => 'alecadd_widgets',
+				'callback'    => array($this->callbacks, 'adminWidget')
 			)
 		);
 	}
@@ -92,47 +92,47 @@ class Admin extends BaseController
 	{
 		$args = array(
 			array(
-				'option_group' => 'Alecadd_plugin_settings',
+				'option_group' => 'alecadd_plugin_settings',
 				'option_name'  => 'cpt_manager',
 				'callback'     => array($this->callbacks_mngr, 'checkboxSanitize')
 			),
 			array(
-				'option_group' => 'Alecadd_plugin_settings',
+				'option_group' => 'alecadd_plugin_settings',
 				'option_name'  => 'taxonomy_manager',
 				'callback'     => array($this->callbacks_mngr, 'checkboxSanitize')
 			),
 			array(
-				'option_group' => 'Alecadd_plugin_settings',
+				'option_group' => 'alecadd_plugin_settings',
 				'option_name'  => 'media_widget',
 				'callback'     => array($this->callbacks_mngr, 'checkboxSanitize')
 			),
 			array(
-				'option_group' => 'Alecadd_plugin_settings',
+				'option_group' => 'alecadd_plugin_settings',
 				'option_name'  => 'gallery_manager',
 				'callback'     => array($this->callbacks_mngr, 'checkboxSanitize')
 			),
 			array(
-				'option_group' => 'Alecadd_plugin_settings',
+				'option_group' => 'alecadd_plugin_settings',
 				'option_name'  => 'testimonial_manager',
 				'callback'     => array($this->callbacks_mngr, 'checkboxSanitize')
 			),
 			array(
-				'option_group' => 'Alecadd_plugin_settings',
+				'option_group' => 'alecadd_plugin_settings',
 				'option_name'  => 'templates_manager',
 				'callback'     => array($this->callbacks_mngr, 'checkboxSanitize')
 			),
 			array(
-				'option_group' => 'Alecadd_plugin_settings',
+				'option_group' => 'alecadd_plugin_settings',
 				'option_name'  => 'login_manager',
 				'callback'     => array($this->callbacks_mngr, 'checkboxSanitize')
 			),
 			array(
-				'option_group' => 'Alecadd_plugin_settings',
+				'option_group' => 'alecadd_plugin_settings',
 				'option_name'  => 'membership_manager',
 				'callback'     => array($this->callbacks_mngr, 'checkboxSanitize')
 			),
 			array(
-				'option_group' => 'Alecadd_plugin_settings',
+				'option_group' => 'alecadd_plugin_settings',
 				'option_name'  => 'chat_manager',
 				'callback'     => array($this->callbacks_mngr, 'checkboxSanitize')
 			)
@@ -145,10 +145,10 @@ class Admin extends BaseController
 	{
 		$args = array(
 			array(
-				'id' => 'Alecadd_admin_index',
-				'title' => 'Settings Manager',
+				'id'       => 'alecadd_admin_index',
+				'title'    => 'Settings Manager',
 				'callback' => array($this->callbacks_mngr, 'adminSectionManager'),
-				'page' => 'Alecadd_plugin'
+				'page'     => 'alecadd_plugin'
 			)
 		);
 
@@ -162,8 +162,8 @@ class Admin extends BaseController
 				'id'       => 'cpt_manager',
 				'title'    => 'Activate CPT Manager',
 				'callback' => array($this->callbacks_mngr, 'checkboxField'),
-				'page'     => 'Alecadd_plugin',
-				'section'  => 'Alecadd_admin_index',
+				'page'     => 'alecadd_plugin',
+				'section'  => 'alecadd_admin_index',
 				'args'     => array(
 					'label_for' => 'cpt_manager',
 					'class'     => 'ui-toggle'
@@ -173,8 +173,8 @@ class Admin extends BaseController
 				'id'       => 'taxonomy_manager',
 				'title'    => 'Activate Taxonomy Manager',
 				'callback' => array($this->callbacks_mngr, 'checkboxField'),
-				'page'     => 'Alecadd_plugin',
-				'section'  => 'Alecadd_admin_index',
+				'page'     => 'alecadd_plugin',
+				'section'  => 'alecadd_admin_index',
 				'args'     => array(
 					'label_for' => 'taxonomy_manager',
 					'class'     => 'ui-toggle'
@@ -184,8 +184,8 @@ class Admin extends BaseController
 				'id'       => 'media_widget',
 				'title'    => 'Activate Media Widget',
 				'callback' => array($this->callbacks_mngr, 'checkboxField'),
-				'page'     => 'Alecadd_plugin',
-				'section'  => 'Alecadd_admin_index',
+				'page'     => 'alecadd_plugin',
+				'section'  => 'alecadd_admin_index',
 				'args'     => array(
 					'label_for' => 'media_widget',
 					'class'     => 'ui-toggle'
@@ -195,8 +195,8 @@ class Admin extends BaseController
 				'id'       => 'gallery_manager',
 				'title'    => 'Activate Gallery Manager',
 				'callback' => array($this->callbacks_mngr, 'checkboxField'),
-				'page'     => 'Alecadd_plugin',
-				'section'  => 'Alecadd_admin_index',
+				'page'     => 'alecadd_plugin',
+				'section'  => 'alecadd_admin_index',
 				'args'     => array(
 					'label_for' => 'gallery_manager',
 					'class'     => 'ui-toggle'
@@ -206,8 +206,8 @@ class Admin extends BaseController
 				'id'       => 'testimonial_manager',
 				'title'    => 'Activate Testimonial Manager',
 				'callback' => array($this->callbacks_mngr, 'checkboxField'),
-				'page'     => 'Alecadd_plugin',
-				'section'  => 'Alecadd_admin_index',
+				'page'     => 'alecadd_plugin',
+				'section'  => 'alecadd_admin_index',
 				'args'     => array(
 					'label_for' => 'testimonial_manager',
 					'class'     => 'ui-toggle'
@@ -217,8 +217,8 @@ class Admin extends BaseController
 				'id'       => 'templates_manager',
 				'title'    => 'Activate Templates Manager',
 				'callback' => array($this->callbacks_mngr, 'checkboxField'),
-				'page'     => 'Alecadd_plugin',
-				'section'  => 'Alecadd_admin_index',
+				'page'     => 'alecadd_plugin',
+				'section'  => 'alecadd_admin_index',
 				'args'     => array(
 					'label_for' => 'templates_manager',
 					'class'     => 'ui-toggle'
@@ -228,8 +228,8 @@ class Admin extends BaseController
 				'id'       => 'login_manager',
 				'title'    => 'Activate Ajax Login/Signup',
 				'callback' => array($this->callbacks_mngr, 'checkboxField'),
-				'page'     => 'Alecadd_plugin',
-				'section'  => 'Alecadd_admin_index',
+				'page'     => 'alecadd_plugin',
+				'section'  => 'alecadd_admin_index',
 				'args'     => array(
 					'label_for' => 'login_manager',
 					'class'     => 'ui-toggle'
@@ -239,8 +239,8 @@ class Admin extends BaseController
 				'id'       => 'membership_manager',
 				'title'    => 'Activate Membership Manager',
 				'callback' => array($this->callbacks_mngr, 'checkboxField'),
-				'page'     => 'Alecadd_plugin',
-				'section'  => 'Alecadd_admin_index',
+				'page'     => 'alecadd_plugin',
+				'section'  => 'alecadd_admin_index',
 				'args'     => array(
 					'label_for' => 'membership_manager',
 					'class'     => 'ui-toggle'
@@ -250,8 +250,8 @@ class Admin extends BaseController
 				'id'       => 'chat_manager',
 				'title'    => 'Activate Chat Manager',
 				'callback' => array($this->callbacks_mngr, 'checkboxField'),
-				'page'     => 'Alecadd_plugin',
-				'section'  => 'Alecadd_admin_index',
+				'page'     => 'alecadd_plugin',
+				'section'  => 'alecadd_admin_index',
 				'args'     => array(
 					'label_for' => 'chat_manager',
 					'class'     => 'ui-toggle'
