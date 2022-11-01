@@ -1,12 +1,23 @@
 <?php
+
 /**
- * @package  alecaddPlugin
+ * @package  AlecaddPlugin
  */
+
 namespace Inc\Base;
 
 class Activate
 {
-	public static function activate() {
+	public static function activate()
+	{
 		flush_rewrite_rules();
+
+		if (get_option('alecadd_plugin')) {
+			return;
+		}
+
+		$default = array();
+
+		update_option('alecadd_plugin', $default);
 	}
 }

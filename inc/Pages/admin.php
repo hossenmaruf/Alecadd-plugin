@@ -11,9 +11,7 @@ use Inc\Base\BaseController;
 use Inc\Api\Callbacks\AdminCallbacks;
 use Inc\Api\Callbacks\ManagerCallbacks;
 
-/**
- * 
- */
+
 class Admin extends BaseController
 {
 	public $settings;
@@ -50,7 +48,7 @@ class Admin extends BaseController
 				'page_title' => 'Alecadd Plugin',
 				'menu_title' => 'Alecadd',
 				'capability' => 'manage_options',
-				'menu_slug' => 'alecaddd_plugin',
+				'menu_slug' => 'alecadd_plugin',
 				'callback' => array($this->callbacks, 'adminDashboard'),
 				'icon_url' => 'dashicons-store',
 				'position' => 110
@@ -63,45 +61,40 @@ class Admin extends BaseController
 		$this->subpages = array(
 			array(
 				'parent_slug' => 'alecadd_plugin',
-				'page_title' => 'Custom Post Types',
-				'menu_title' => 'CPT',
-				'capability' => 'manage_options',
-				'menu_slug' => 'alecadd_cpt',
-				'callback' => array($this->callbacks, 'adminCpt')
+				'page_title'  => 'Custom Post Types',
+				'menu_title'  => 'CPT',
+				'capability'  => 'manage_options',
+				'menu_slug'   => 'alecadd_cpt',
+				'callback'    => array($this->callbacks, 'adminCpt')
 			),
 			array(
 				'parent_slug' => 'alecadd_plugin',
-				'page_title' => 'Custom Taxonomies',
-				'menu_title' => 'Taxonomies',
-				'capability' => 'manage_options',
-				'menu_slug' => 'alecadd_taxonomies',
-				'callback' => array($this->callbacks, 'adminTaxonomy')
+				'page_title'  => 'Custom Taxonomies',
+				'menu_title'  => 'Taxonomies',
+				'capability'  => 'manage_options',
+				'menu_slug'   => 'alecadd_taxonomies',
+				'callback'    => array($this->callbacks, 'adminTaxonomy')
 			),
 			array(
 				'parent_slug' => 'alecadd_plugin',
-				'page_title' => 'Custom Widgets',
-				'menu_title' => 'Widgets',
-				'capability' => 'manage_options',
-				'menu_slug' => 'alecadd_widgets',
-				'callback' => array($this->callbacks, 'adminWidget')
+				'page_title'  => 'Custom Widgets',
+				'menu_title'  => 'Widgets',
+				'capability'  => 'manage_options',
+				'menu_slug'   => 'alecadd_widgets',
+				'callback'    => array($this->callbacks, 'adminWidget')
 			)
 		);
 	}
 
 	public function setSettings()
 	{
-
-		$args = array();
-
-		foreach ($this->managers as $key => $value) {
-
-
-			$args[] = 	array(
+		$args = array(
+			array(
 				'option_group' => 'alecadd_plugin_settings',
-				'option_name' => 'alecadd_plugin',
-				'callback' => array($this->callbacks_mngr, 'checkboxSanitize')
-			);
-		}
+				'option_name'  => 'alecadd_plugin',
+				'callback'     => array($this->callbacks_mngr, 'checkboxSanitize')
+			)
+		);
 
 		$this->settings->setSettings($args);
 	}
