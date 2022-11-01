@@ -1,7 +1,9 @@
-<?php 
+<?php
+
 /**
  * @package  alecaddPlugin
  */
+
 namespace Inc\Api\Callbacks;
 
 use Inc\Base\BaseController;
@@ -10,25 +12,25 @@ class AdminCallbacks extends BaseController
 {
 	public function adminDashboard()
 	{
-		return require_once( "$this->plugin_path/templates/admin.php" );
+		return require_once("$this->plugin_path/templates/admin.php");
 	}
 
 	public function adminCpt()
 	{
-		return require_once( "$this->plugin_path/templates/cpt.php" );
+		return require_once("$this->plugin_path/templates/cpt.php");
 	}
 
 	public function adminTaxonomy()
 	{
-		return require_once( "$this->plugin_path/templates/taxonomy.php" );
+		return require_once("$this->plugin_path/templates/taxonomy.php");
 	}
 
 	public function adminWidget()
 	{
-		return require_once( "$this->plugin_path/templates/widget.php" );
+		return require_once("$this->plugin_path/templates/widget.php");
 	}
 
-	public function alecaddOptionsGroup( $input )
+	public function alecaddOptionsGroup($input)
 	{
 		return $input;
 	}
@@ -40,13 +42,13 @@ class AdminCallbacks extends BaseController
 
 	public function alecaddTextExample()
 	{
-		$value = esc_attr( get_option( 'text_example' ) );
+		$value = esc_attr(get_option('text_example'));
 		echo '<input type="text" class="regular-text" name="text_example" value="' . $value . '" placeholder="Write Something Here!">';
 	}
 
 	public function alecaddFirstName()
 	{
-		$value = esc_attr( get_option( 'first_name' ) );
+		$value = esc_attr(get_option('first_name'));
 		echo '<input type="text" class="regular-text" name="first_name" value="' . $value . '" placeholder="Write your First Name">';
 	}
 }

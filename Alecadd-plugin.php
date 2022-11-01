@@ -4,11 +4,11 @@
  */
 /*
 Plugin Name: alecadd Plugin
-Plugin URI: http://alecadd.com/plugin
-Description: This is my first attempt on writing a custom Plugin for this amazing tutorial series.
+Plugin URI: https://github.com/hossenmaruf
+Description: This is my first attempt on writing a custom Plugin
 Version: 1.0.0
-Author: Alessandro "alecadd" Castellani
-Author URI: http://alecadd.com
+Author: hossenmaruf
+Author URI: https://github.com/hossenmaruf
 License: GPLv2 or later
 Text Domain: alecadd-plugin
 */
@@ -24,9 +24,6 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 Copyright 2005-2015 Automattic, Inc.
 */

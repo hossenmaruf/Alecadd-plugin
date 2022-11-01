@@ -2,10 +2,10 @@
 	"name": "alecadd-plugin",
 	"version": "1.0.0",
 	"description": "Awesome starter plugin example",
-	"author": "Alessandro Castellani <me@alecadd.com> (http://alecadd.com)",
+	"author": "hossenmaruf",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/alecadd/WordPressPlugin101"
+		"url": "https://github.com/hossenmaruf"
 	},
 	"keywords": [
 		"wordpress",
