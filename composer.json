@@ -1,21 +1,17 @@
 {
-    "name": "sever/alecadd-plugin",
-    "description": "composer starter",
+    "name": "alecadd/alecadd-plugin",
+    "description": "Awesome starter plugin example",
     "type": "project",
-    "license": "GPL",
-    "autoload": {
-        "psr-4": {
-            "Sever\\AlecaddPlugin\\": "src/"
-        }
-    },
+    "license": "GPL-3.0",
     "authors": [
         {
-            "name": "hossenmaruf",
+            "name": "Alecadd",
             "email": "severusmaruf740@gmail.com"
         }
     ],
+    "minimum-stability": "dev",
     "require": {},
-    "autoload" : {
-        "psr-4" : {"Inc\\" : "./inc"}
+    "autoload": {
+        "psr-4": {"Inc\\": "./inc"}
     }
 }

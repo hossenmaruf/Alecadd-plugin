@@ -1,5 +1,5 @@
 <div class="wrap">
-    <h1>Alecadd Plugin Template</h1>
+    <h1>alecadd Plugin</h1>
     <?php settings_errors(); ?>
 
     <ul class="nav nav-tabs">
@@ -12,11 +12,11 @@
         <div id="tab-1" class="tab-pane active">
 
             <form method="post" action="options.php">
-                <?php
-                settings_fields('Alecadd_options_group');
-                do_settings_sections('Alecadd_plugin');
-                submit_button();
-                ?>
+                <?php 
+					settings_fields( 'alecadd_options_group' );
+					do_settings_sections( 'alecadd_plugin' );
+					submit_button();
+				?>
             </form>
 
         </div>
@@ -24,9 +24,9 @@
         <div id="tab-2" class="tab-pane">
             <h3>Updates</h3>
         </div>
+
         <div id="tab-3" class="tab-pane">
             <h3>About</h3>
         </div>
     </div>
-
 </div>

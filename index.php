@@ -1,2 +1,2 @@
-<?php 
-//its starts here
+<?php
+// Silence is golden.
