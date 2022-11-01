@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @package  AlecaddPlugin
+ * @package  alecaddPlugin
  */
 
 namespace Inc\Pages;

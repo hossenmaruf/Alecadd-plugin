@@ -1,7 +1,3 @@
-# Plugin 101 Series
-
-Full list of sections and features we will build during the series of Tutorials
-
 * Modular Administration Area
 * CPT Manager
 * Custom Taxonomy Manager
