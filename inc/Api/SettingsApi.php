@@ -18,7 +18,7 @@ class SettingsApi
 
 	public function register()
 	{
-		if ( ! empty($this->admin_pages) ) {
+		if ( ! empty($this->admin_pages) || !empty( $this->admin_subpages) ) {
 			add_action( 'admin_menu', array( $this, 'addAdminMenu' ) );
 		}
 
@@ -44,12 +44,12 @@ class SettingsApi
 
 		$subpage = array(
 			array(
-				'parent_slug' => $admin_page['menu_slug'], 
-				'page_title' => $admin_page['page_title'], 
-				'menu_title' => ($title) ? $title : $admin_page['menu_title'], 
-				'capability' => $admin_page['capability'], 
-				'menu_slug' => $admin_page['menu_slug'], 
-				'callback' => $admin_page['callback']
+				'parent_slug' => $admin_page['menu_slug'],
+				'page_title'  => $admin_page['page_title'],
+				'menu_title'  => ($title) ? $title : $admin_page['menu_title'],
+				'capability'  => $admin_page['capability'],
+				'menu_slug'   => $admin_page['menu_slug'],
+				'callback'    => $admin_page['callback']
 			)
 		);
 
