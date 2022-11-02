@@ -16,15 +16,7 @@ class CustomPostTypeController extends BaseController
 
     public function register()
     {
-        $option = get_option('alecadd_plugin');
-
-        $activated = isset($option['cpt_manager']) ? $option['cpt_manager'] : false;
-
-        if (!$activated) {
-            return;
-        }
-
-
+        if ( ! $this->activated( 'cpt_manager' ) ) return;
 
         $this->settings = new SettingsApi();
 
