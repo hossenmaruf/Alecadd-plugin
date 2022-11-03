@@ -6,11 +6,14 @@ namespace Inc\Base;
 
 use Inc\Api\SettingsApi;
 use Inc\Base\BaseController;
+use Inc\Api\Callbacks\CptCallbacks;
 use Inc\Api\Callbacks\AdminCallbacks;
 
 class CustomPostTypeController extends BaseController
 {
 	public $callbacks;
+
+    public $settings;
 
 	public $subpages = array();
 
@@ -24,7 +27,15 @@ class CustomPostTypeController extends BaseController
 
 		$this->callbacks = new AdminCallbacks();
 
+        $this->cpt_callbacks = new CptCallbacks();
+
 		$this->setSubpages();
+
+        $this->setSettings();
+
+		$this->setSections();
+
+		$this->setFields();
 
 		$this->settings->addSubPages( $this->subpages )->register();
 
@@ -48,6 +59,102 @@ class CustomPostTypeController extends BaseController
 			)
 		);
 	}
+
+    public function setSettings()
+	{
+		$args = array(
+			array(
+				'option_group' => 'alecadd_plugin_cpt_settings',
+				'option_name' => 'alecadd_plugin_cpt',
+				'callback' => array( $this->cpt_callbacks, 'cptSanitize' )
+			)
+		);
+
+		$this->settings->setSettings( $args );
+	}
+
+	public function setSections()
+	{
+		$args = array(
+			array(
+				'id' => 'alecadd_cpt_index',
+				'title' => 'Custom Post Type Manager',
+				'callback' => array( $this->cpt_callbacks, 'cptSectionManager' ),
+				'page' => 'alecadd_cpt'
+			)
+		);
+
+		$this->settings->setSections( $args );
+	}
+
+	public function setFields()
+	{
+		$args = array(
+			array(
+				'id' => 'post_type',
+				'title' => 'Custom Post Type ID',
+				'callback' => array( $this->cpt_callbacks, 'textField' ),
+				'page' => 'alecadd_cpt',
+				'section' => 'alecadd_cpt_index',
+				'args' => array(
+					'option_name' => 'alecadd_plugin_cpt',
+					'label_for' => 'post_type',
+					'placeholder' => 'eg. product'
+				)
+			),
+			array(
+				'id' => 'singular_name',
+				'title' => 'Singular Name',
+				'callback' => array( $this->cpt_callbacks, 'textField' ),
+				'page' => 'alecadd_cpt',
+				'section' => 'alecadd_cpt_index',
+				'args' => array(
+					'option_name' => 'alecadd_plugin_cpt',
+					'label_for' => 'singular_name',
+					'placeholder' => 'eg. Product'
+				)
+			),
+			array(
+				'id' => 'plural_name',
+				'title' => 'Plural Name',
+				'callback' => array( $this->cpt_callbacks, 'textField' ),
+				'page' => 'alecadd_cpt',
+				'section' => 'alecadd_cpt_index',
+				'args' => array(
+					'option_name' => 'alecadd_plugin_cpt',
+					'label_for' => 'plural_name',
+					'placeholder' => 'eg. Products'
+				)
+			),
+			array(
+				'id' => 'public',
+				'title' => 'Public',
+				'callback' => array( $this->cpt_callbacks, 'checkboxField' ),
+				'page' => 'alecadd_cpt',
+				'section' => 'alecadd_cpt_index',
+				'args' => array(
+					'option_name' => 'alecadd_plugin_cpt',
+					'label_for' => 'public',
+					'class' => 'ui-toggle'
+				)
+			),
+			array(
+				'id' => 'has_archive',
+				'title' => 'Archive',
+				'callback' => array( $this->cpt_callbacks, 'checkboxField' ),
+				'page' => 'alecadd_cpt',
+				'section' => 'alecadd_cpt_index',
+				'args' => array(
+					'option_name' => 'alecadd_plugin_cpt',
+					'label_for' => 'has_archive',
+					'class' => 'ui-toggle'
+				)
+			)
+		);
+
+		$this->settings->setFields( $args );
+	}
+    
 
 	public function storeCustomPostTypes()
 	{
