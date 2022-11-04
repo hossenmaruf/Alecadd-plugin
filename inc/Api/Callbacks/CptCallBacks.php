@@ -14,17 +14,17 @@ class CptCallbacks
 
 	public function cptSanitize( $input )
 	{
-		$output = get_option('alecadd_plugin_cpt');
+		// $output = get_option('alecadd_plugin_cpt');
 
-		foreach ($output as $key => $value) {
-			if ($input['post_type'] === $key) {
-				$output[$key] = $input;
-			} else {
-				$output[$input['post_type']] = $input;
-			}
-		}
+		// foreach ($output as $key => $value) {
+		// 	if ($input['post_type'] === $key) {
+		// 		$output[$key] = $input;
+		// 	} else {
+		// 		$output[$input['post_type']] = $input;
+		// 	}
+		// }
 		
-		return $output;
+		return $input;
 	}
 
 	public function textField( $args )
