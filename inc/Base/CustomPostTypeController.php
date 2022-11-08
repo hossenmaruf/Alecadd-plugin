@@ -9,9 +9,7 @@ use Inc\Base\BaseController;
 use Inc\Api\Callbacks\CptCallbacks;
 use Inc\Api\Callbacks\AdminCallbacks;
 
-/**
-* 
-*/
+
 class CustomPostTypeController extends BaseController
 {
 	public $settings;
@@ -96,68 +94,68 @@ class CustomPostTypeController extends BaseController
 	{
 		$args = array(
 			array(
-				'id' => 'post_type',
-				'title' => 'Custom Post Type ID',
+				'id'       => 'post_type',
+				'title'    => 'Custom Post Type ID',
 				'callback' => array( $this->cpt_callbacks, 'textField' ),
-				'page' => 'alecadd_cpt',
-				'section' => 'alecadd_cpt_index',
-				'args' => array(
+				'page'     => 'alecadd_cpt',
+				'section'  => 'alecadd_cpt_index',
+				'args'     => array(
 					'option_name' => 'alecadd_plugin_cpt',
-					'label_for' => 'post_type',
+					'label_for'   => 'post_type',
 					'placeholder' => 'eg. product',
-					'array' => 'post_type'
+					'array'       => 'post_type'
 				)
 			),
 			array(
-				'id' => 'singular_name',
-				'title' => 'Singular Name',
+				'id'       => 'singular_name',
+				'title'    => 'Singular Name',
 				'callback' => array( $this->cpt_callbacks, 'textField' ),
-				'page' => 'alecadd_cpt',
-				'section' => 'alecadd_cpt_index',
-				'args' => array(
+				'page'     => 'alecadd_cpt',
+				'section'  => 'alecadd_cpt_index',
+				'args'     => array(
 					'option_name' => 'alecadd_plugin_cpt',
-					'label_for' => 'singular_name',
+					'label_for'   => 'singular_name',
 					'placeholder' => 'eg. Product',
-					'array' => 'post_type'
+					'array'       => 'post_type'
 				)
 			),
 			array(
-				'id' => 'plural_name',
-				'title' => 'Plural Name',
+				'id'       => 'plural_name',
+				'title'    => 'Plural Name',
 				'callback' => array( $this->cpt_callbacks, 'textField' ),
-				'page' => 'alecadd_cpt',
-				'section' => 'alecadd_cpt_index',
-				'args' => array(
+				'page'     => 'alecadd_cpt',
+				'section'  => 'alecadd_cpt_index',
+				'args'     => array(
 					'option_name' => 'alecadd_plugin_cpt',
-					'label_for' => 'plural_name',
+					'label_for'   => 'plural_name',
 					'placeholder' => 'eg. Products',
-					'array' => 'post_type'
+					'array'       => 'post_type'
 				)
 			),
 			array(
-				'id' => 'public',
-				'title' => 'Public',
+				'id'       => 'public',
+				'title'    => 'Public',
 				'callback' => array( $this->cpt_callbacks, 'checkboxField' ),
-				'page' => 'alecadd_cpt',
-				'section' => 'alecadd_cpt_index',
-				'args' => array(
+				'page'     => 'alecadd_cpt',
+				'section'  => 'alecadd_cpt_index',
+				'args'     => array(
 					'option_name' => 'alecadd_plugin_cpt',
-					'label_for' => 'public',
-					'class' => 'ui-toggle',
-					'array' => 'post_type'
+					'label_for'   => 'public',
+					'class'       => 'ui-toggle',
+					'array'       => 'post_type'
 				)
 			),
 			array(
-				'id' => 'has_archive',
-				'title' => 'Archive',
+				'id'       => 'has_archive',
+				'title'    => 'Archive',
 				'callback' => array( $this->cpt_callbacks, 'checkboxField' ),
-				'page' => 'alecadd_cpt',
-				'section' => 'alecadd_cpt_index',
-				'args' => array(
+				'page'     => 'alecadd_cpt',
+				'section'  => 'alecadd_cpt_index',
+				'args'     => array(
 					'option_name' => 'alecadd_plugin_cpt',
-					'label_for' => 'has_archive',
-					'class' => 'ui-toggle',
-					'array' => 'post_type'
+					'label_for'   => 'has_archive',
+					'class'       => 'ui-toggle',
+					'array'       => 'post_type'
 				)
 			)
 		);
@@ -167,6 +165,16 @@ class CustomPostTypeController extends BaseController
 
 	public function storeCustomPostTypes()
 	{
+
+
+       
+		if (!get_option('alecadd_plugin_cpt')) {
+
+			return;
+		}
+
+
+
 		$options = get_option('alecadd_plugin_cpt');
 
 		foreach ($options as $option) {

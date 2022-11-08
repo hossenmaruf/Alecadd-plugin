@@ -18,6 +18,9 @@ class Activate
 
 		$default = array();
 
-		update_option('alecadd_plugin', $default);
+		if (!get_option('alecadd_plugin_cpt')) {
+
+			update_option('alecadd_plugin', $default);
+		}
 	}
 }
