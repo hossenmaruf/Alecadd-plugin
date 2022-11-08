@@ -1,26 +1,22 @@
 <?php
-
 /**
  * @package  AlecaddPlugin
  */
-
 namespace Inc\Base;
 
 class Activate
 {
-	public static function activate()
-	{
+	public static function activate() {
 		flush_rewrite_rules();
-
-		if (get_option('alecadd_plugin')) {
-			return;
-		}
 
 		$default = array();
 
-		if (!get_option('alecadd_plugin_cpt')) {
+		if ( ! get_option( 'alecad_plugin' ) ) {
+			update_option( 'alecaddd_plugin', $default );
+		}
 
-			update_option('alecadd_plugin', $default);
+		if ( ! get_option( 'alecadd_plugin_cpt' ) ) {
+			update_option( 'alecadd_plugin_cpt', $default );
 		}
 	}
 }
