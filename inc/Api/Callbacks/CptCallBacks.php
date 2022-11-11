@@ -16,16 +16,12 @@ class CptCallbacks
 
 	public function cptSanitize($input)
 	{
-
-		//  var_dump($_POST);
-		//  die();
-
 		$output = get_option('alecadd_plugin_cpt');
-
 
 		if (isset($_POST["remove"])) {
 			unset($output[$_POST["remove"]]);
-			return;
+
+			return $output;
 		}
 
 		if (count($output) == 0) {
