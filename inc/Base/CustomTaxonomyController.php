@@ -178,6 +178,7 @@ class CustomTaxonomyController extends BaseController
 				'show_admin_column' => true,
 				'query_var'         => true,
 				'rewrite'           => array( 'slug' => $option['taxonomy'] ),
+				'objects'  => $option['objects']
 			);
 
 		}
@@ -187,6 +188,8 @@ class CustomTaxonomyController extends BaseController
 	public function registerCustomTaxonomy()
 	{
 		foreach ($this->taxonomies as $taxonomy) {
+
+			var_dump($taxonomy);
 			register_taxonomy( $taxonomy['rewrite']['slug'], array( 'post' ), $taxonomy );
 		}
 	}
