@@ -65,14 +65,10 @@ class TaxonomyCallbacks
 
 		echo '<div class="' . $classes . '"><input type="checkbox" id="' . $name . '" name="' . $option_name . '[' . $name . ']" value="1" class="" ' . ( $checked ? 'checked' : '') . '><label for="' . $name . '"><div></div></label></div>';
 	}
-	
 
-	public function checkboxPostTypeField( $args )
+	public function checkboxPostTypesField( $args )
 	{
-
-    $output = '' ;
-
-
+		$output = '';
 		$name = $args['label_for'];
 		$classes = $args['class'];
 		$option_name = $args['option_name'];
@@ -82,24 +78,19 @@ class TaxonomyCallbacks
 			$checkbox = get_option( $option_name );
 		}
 
-     
-		 $post_types = get_post_types( array( 'show_ui' => true ));
+		$post_types = get_post_types( array( 'show_ui' => true ) );
 
-		  foreach( $post_types as $post ) {
+		foreach ($post_types as $post) {
 
 			if ( isset($_POST["edit_taxonomy"]) ) {
 				$checked = isset($checkbox[$_POST["edit_taxonomy"]][$name][$post]) ?: false;
 			}
-			
-			$output .= '<div class="' . $classes . ' mb-10 "><input type="checkbox" id="' . $post . '" name="' . $option_name . '[' . $name . '][ '. $post . ' ]" value="1" class="" ' . ( $checked ? 'checked' : '') . '><label for="' . $post . '"><div></div></label>  <strong> ' . $post . ' </strong>     </div>' ;
-		  }
 
-
+			$output .= '<div class="' . $classes . ' mb-10"><input type="checkbox" id="' . $post . '" name="' . $option_name . '[' . $name . '][' . $post . ']" value="1" class="" ' . ( $checked ? 'checked' : '') . '><label for="' . $post . '"><div></div></label> <strong>' . $post . '</strong></div>';
+		}
 
 		// echo '<div class="' . $classes . '"><input type="checkbox" id="' . $name . '" name="' . $option_name . '[' . $name . ']" value="1" class="" ' . ( $checked ? 'checked' : '') . '><label for="' . $name . '"><div></div></label></div>';
-	
-	echo $output;
-	
-	
+
+		echo $output;
 	}
 }

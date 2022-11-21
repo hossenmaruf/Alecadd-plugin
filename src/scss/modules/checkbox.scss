@@ -25,12 +25,12 @@ $off: #8c8c8c;
 	input[type='checkbox'] {
 		display: none;
 
-		&:checked + label {
+		&:checked+label {
 			border-color: $on;
 			background: $on;
 			box-shadow: inset 0 0 0 #{$height / 2} $on;
 
-			> div {
+			>div {
 				margin-left: $height;
 			}
 		}
@@ -59,16 +59,17 @@ $off: #8c8c8c;
 		}
 
 		&:hover,
-		& > div:hover {
+		&>div:hover {
 			cursor: pointer;
 		}
 	}
 }
 
-div.ui-toggle {
-	@include ui-toggle(20px, $on, $off);
+		div.ui-toggle {
+			@include ui-toggle(20px, $on, $off);
 
- 
+			&.mb-10 {
+				margin-bottom: 10px;
+			}
 
-
-}
+		}
