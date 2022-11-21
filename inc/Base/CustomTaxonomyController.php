@@ -9,9 +9,7 @@ use Inc\Base\BaseController;
 use Inc\Api\Callbacks\AdminCallbacks;
 use Inc\Api\Callbacks\TaxonomyCallbacks;
 
-/**
-* 
-*/
+
 class CustomTaxonomyController extends BaseController
 {
 	public $settings;
@@ -133,7 +131,20 @@ class CustomTaxonomyController extends BaseController
 					'class'       => 'ui-toggle',
 					'array'       => 'taxonomy'
 				)
-			)
+				),
+				array(
+					'id'       => 'objects',
+					'title'    => 'Post Types',
+					'callback' => array( $this->tax_callbacks, 'checkboxPostTypeField' ),
+					'page'     => 'alecadd_taxonomy',
+					'section'  => 'alecadd_tax_index',
+					'args'     => array(
+						'option_name' => 'alecadd_plugin_tax',
+						'label_for'   => 'objects',
+						'class'       => 'ui-toggle',
+						'array'       => 'taxonomy'
+					)
+				)
 		);
 
 		$this->settings->setFields( $args );

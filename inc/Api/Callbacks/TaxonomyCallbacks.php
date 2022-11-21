@@ -65,4 +65,38 @@ class TaxonomyCallbacks
 
 		echo '<div class="' . $classes . '"><input type="checkbox" id="' . $name . '" name="' . $option_name . '[' . $name . ']" value="1" class="" ' . ( $checked ? 'checked' : '') . '><label for="' . $name . '"><div></div></label></div>';
 	}
+	
+
+	public function checkboxPostTypeField( $args )
+	{
+
+    $output = '' ;
+
+
+		$name = $args['label_for'];
+		$classes = $args['class'];
+		$option_name = $args['option_name'];
+		$checked = false;
+
+		if ( isset($_POST["edit_taxonomy"]) ) {
+			$checkbox = get_option( $option_name );
+			$checked = isset($checkbox[$_POST["edit_taxonomy"]][$name]) ?: false;
+		}
+
+     
+		 $post_types = get_post_types( array( 'show_ui' => true ));
+
+		  foreach( $post_types as $post ) {
+			
+			$output .= $post . '</br>' ;
+		  }
+
+
+
+		// echo '<div class="' . $classes . '"><input type="checkbox" id="' . $name . '" name="' . $option_name . '[' . $name . ']" value="1" class="" ' . ( $checked ? 'checked' : '') . '><label for="' . $name . '"><div></div></label></div>';
+	
+	echo $output;
+	
+	
+	}
 }
