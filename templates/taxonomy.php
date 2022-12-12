@@ -37,7 +37,7 @@
 					settings_fields( 'alecadd_plugin_tax_settings' );
 					echo '<input type="hidden" name="remove" value="' . $option['taxonomy'] . '">';
 					submit_button( 'Delete', 'delete small', 'submit', false, array(
-						'onclick' => 'return confirm("Are you sure you want to delete this Custom Taxonomy?");'
+						'onclick' => 'return confirm("Are you sure you want to delete this Custom Taxonomy? The data associated with it will not be deleted.");'
 					));
 					echo '</form></td></tr>';
 				}
