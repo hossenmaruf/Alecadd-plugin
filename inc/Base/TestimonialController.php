@@ -6,9 +6,7 @@ use Inc\Api\SettingsApi;
 use Inc\Base\BaseController;
 use Inc\Api\Callbacks\TestimonialCallbacks;
 
-/**
-* 
-*/
+
 class TestimonialController extends BaseController
 {
 	public $settings;
@@ -33,6 +31,7 @@ class TestimonialController extends BaseController
 		$this->setShortcodePage();
 
 		add_shortcode( 'testimonial-form', array( $this, 'testimonial_form' ) );
+		add_shortcode( 'testimonial-slideshow', array( $this, 'testimonial-slideshow' ) );
 		add_action( 'wp_ajax_submit_testimonial', array( $this, 'submit_testimonial' ) );
 		add_action( 'wp_ajax_nopriv_submit_testimonial', array( $this, 'submit_testimonial' ) );
 	}
@@ -93,6 +92,20 @@ class TestimonialController extends BaseController
 		return ob_get_clean();
 	}
 
+
+	public function testimonial_slideshow()
+	{
+		ob_start();
+	//	echo "<link rel=\"stylesheet\" href=\"$this->plugin_url/assets/slider.css\" type=\"text/css\" media=\"all\" />";
+		require_once( "$this->plugin_path/templates/slider.php" );
+		echo "<script src=\"$this->plugin_url/src/js/slider.js\"></script>";
+		return ob_get_clean();
+	}
+
+
+
+
+
 	public function setShortcodePage()
 	{
 		$subpage = array(
@@ -145,9 +158,9 @@ class TestimonialController extends BaseController
 	{
 		wp_nonce_field( 'alecadd_testimonial', 'alecadd_testimonial_nonce' );
 
-		$data = get_post_meta( $post->ID, '_alecadd_testimonial_key', true );
-		$name = isset($data['name']) ? $data['name'] : '';
-		$email = isset($data['email']) ? $data['email'] : '';
+		$data     = get_post_meta( $post->ID, '_alecadd_testimonial_key', true );
+		$name     = isset($data['name']) ? $data['name'] : '';
+		$email    = isset($data['email']) ? $data['email'] : '';
 		$approved = isset($data['approved']) ? $data['approved'] : false;
 		$featured = isset($data['featured']) ? $data['featured'] : false;
 		?>
@@ -206,8 +219,8 @@ class TestimonialController extends BaseController
 		}
 
 		$data = array(
-			'name' => sanitize_text_field( $_POST['alecadd_testimonial_author'] ),
-			'email' => sanitize_email( $_POST['alecadd_testimonial_email'] ),
+			'name'     => sanitize_text_field( $_POST['alecadd_testimonial_author'] ),
+			'email'    => sanitize_email( $_POST['alecadd_testimonial_email'] ),
 			'approved' => isset($_POST['alecadd_testimonial_approved']) ? 1 : 0,
 			'featured' => isset($_POST['alecadd_testimonial_featured']) ? 1 : 0,
 		);
