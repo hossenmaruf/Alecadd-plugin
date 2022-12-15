@@ -33,30 +33,27 @@ class TestimonialController extends BaseController
 		$this->setShortcodePage();
 
 		add_shortcode( 'testimonial-form', array( $this, 'testimonial_form' ) );
-		
 	}
 
 	public function testimonial_form()
 	{
 		ob_start();
-		echo "<link href=\"$this->plugin_url/assets/form.css\"></link>";
+		echo "<link rel=\"stylesheet\" href=\"$this->plugin_url/assets/form.css\" type=\"text/css\" media=\"all\" />";
 		require_once( "$this->plugin_path/templates/contact-form.php" );
 		echo "<script src=\"$this->plugin_url/assets/form.js\"></script>";
 		return ob_get_clean();
 	}
-
-	
 
 	public function setShortcodePage()
 	{
 		$subpage = array(
 			array(
 				'parent_slug' => 'edit.php?post_type=testimonial',
-				'page_title'  => 'Shortcodes',
-				'menu_title'  => 'Shortcodes',
-				'capability'  => 'manage_options',
-				'menu_slug'   => 'alecadd_testimonial_shortcode',
-				'callback'    => array( $this->callbacks, 'shortcodePage' )
+				'page_title' => 'Shortcodes',
+				'menu_title' => 'Shortcodes',
+				'capability' => 'manage_options',
+				'menu_slug' => 'alecadd_testimonial_shortcode',
+				'callback' => array( $this->callbacks, 'shortcodePage' )
 			)
 		);
 
@@ -66,18 +63,18 @@ class TestimonialController extends BaseController
 	public function testimonial_cpt ()
 	{
 		$labels = array(
-			'name'          => 'Testimonials',
+			'name' => 'Testimonials',
 			'singular_name' => 'Testimonial'
 		);
 
 		$args = array(
-			'labels'              => $labels,
-			'public'              => true,
-			'has_archive'         => false,
-			'menu_icon'           => 'dashicons-testimonial',
+			'labels' => $labels,
+			'public' => true,
+			'has_archive' => false,
+			'menu_icon' => 'dashicons-testimonial',
 			'exclude_from_search' => true,
-			'publicly_queryable'  => false,
-			'supports'            => array( 'title', 'editor' )
+			'publicly_queryable' => false,
+			'supports' => array( 'title', 'editor' )
 		);
 
 		register_post_type ( 'testimonial', $args );
@@ -99,9 +96,9 @@ class TestimonialController extends BaseController
 	{
 		wp_nonce_field( 'alecadd_testimonial', 'alecadd_testimonial_nonce' );
 
-		$data     = get_post_meta( $post->ID, '_alecadd_testimonial_key', true );
-		$name     = isset($data['name']) ? $data['name'] : '';
-		$email    = isset($data['email']) ? $data['email'] : '';
+		$data = get_post_meta( $post->ID, '_alecadd_testimonial_key', true );
+		$name = isset($data['name']) ? $data['name'] : '';
+		$email = isset($data['email']) ? $data['email'] : '';
 		$approved = isset($data['approved']) ? $data['approved'] : false;
 		$featured = isset($data['featured']) ? $data['featured'] : false;
 		?>
@@ -160,8 +157,8 @@ class TestimonialController extends BaseController
 		}
 
 		$data = array(
-			'name'     => sanitize_text_field( $_POST['alecadd_testimonial_author'] ),
-			'email'    => sanitize_text_field( $_POST['alecadd_testimonial_email'] ),
+			'name' => sanitize_text_field( $_POST['alecadd_testimonial_author'] ),
+			'email' => sanitize_text_field( $_POST['alecadd_testimonial_email'] ),
 			'approved' => isset($_POST['alecadd_testimonial_approved']) ? 1 : 0,
 			'featured' => isset($_POST['alecadd_testimonial_featured']) ? 1 : 0,
 		);
@@ -171,36 +168,36 @@ class TestimonialController extends BaseController
 	public function set_custom_columns($columns)
 	{
 		$title = $columns['title'];
-		$date  = $columns['date'];
+		$date = $columns['date'];
 		unset( $columns['title'], $columns['date'] );
 
-		$columns['name']     = 'Author Name';
-		$columns['title']    = $title;
+		$columns['name'] = 'Author Name';
+		$columns['title'] = $title;
 		$columns['approved'] = 'Approved';
 		$columns['featured'] = 'Featured';
-		$columns['date']     = $date;
+		$columns['date'] = $date;
 
 		return $columns;
 	}
 
 	public function set_custom_columns_data($column, $post_id)
 	{
-		$data     = get_post_meta( $post_id, '_alecadd_testimonial_key', true );
-		$name     = isset($data['name']) ? $data['name'] : '';
-		$email    = isset($data['email']) ? $data['email'] : '';
+		$data = get_post_meta( $post_id, '_alecadd_testimonial_key', true );
+		$name = isset($data['name']) ? $data['name'] : '';
+		$email = isset($data['email']) ? $data['email'] : '';
 		$approved = isset($data['approved']) && $data['approved'] === 1 ? '<strong>YES</strong>' : 'NO';
 		$featured = isset($data['featured']) && $data['featured'] === 1 ? '<strong>YES</strong>' : 'NO';
 
 		switch($column) {
-			case 'name': 
+			case 'name':
 				echo '<strong>' . $name . '</strong><br/><a href="mailto:' . $email . '">' . $email . '</a>';
 				break;
 
-			case 'approved': 
+			case 'approved':
 				echo $approved;
 				break;
 
-			case 'featured': 
+			case 'featured':
 				echo $featured;
 				break;
 		}
@@ -208,7 +205,7 @@ class TestimonialController extends BaseController
 
 	public function set_custom_columns_sortable($columns)
 	{
-		$columns['name']     = 'name';
+		$columns['name'] = 'name';
 		$columns['approved'] = 'approved';
 		$columns['featured'] = 'featured';
 
