@@ -33,6 +33,55 @@ class TestimonialController extends BaseController
 		$this->setShortcodePage();
 
 		add_shortcode( 'testimonial-form', array( $this, 'testimonial_form' ) );
+		add_action( 'wp_ajax_submit_testimonial', array( $this, 'submit_testimonial' ) );
+		add_action( 'wp_ajax_nopriv_submit_testimonial', array( $this, 'submit_testimonial' ) );
+	}
+
+	public function submit_testimonial()
+	{
+		if (! DOING_AJAX || ! check_ajax_referer('testimonial-nonce', 'nonce') ) {
+			return $this->return_json('error');
+		}
+
+		$name    = sanitize_text_field($_POST['name']);
+		$email   = sanitize_email($_POST['email']);
+		$message = sanitize_textarea_field($_POST['message']);
+
+		$data = array(
+			'name'     => $name,
+			'email'    => $email,
+			'approved' => 0,
+			'featured' => 0,
+		);
+
+		$args = array(
+			'post_title'   => 'Testimonial from ' . $name,
+			'post_content' => $message,
+			'post_author'  => 1,
+			'post_status'  => 'publish',
+			'post_type'    => 'testimonial',
+			'meta_input'   => array(
+				'_alecadd_testimonial_key' => $data
+			)
+		);
+
+		$postID = wp_insert_post($args);
+
+		if ($postID) {
+			return $this->return_json('success');
+		}
+
+		return $this->return_json('error');
+	}
+
+	public function return_json($status)
+	{
+		$return = array(
+			'status' => $status
+		);
+		wp_send_json($return);
+
+		wp_die();
 	}
 
 	public function testimonial_form()
@@ -49,11 +98,11 @@ class TestimonialController extends BaseController
 		$subpage = array(
 			array(
 				'parent_slug' => 'edit.php?post_type=testimonial',
-				'page_title' => 'Shortcodes',
-				'menu_title' => 'Shortcodes',
-				'capability' => 'manage_options',
-				'menu_slug' => 'alecadd_testimonial_shortcode',
-				'callback' => array( $this->callbacks, 'shortcodePage' )
+				'page_title'  => 'Shortcodes',
+				'menu_title'  => 'Shortcodes',
+				'capability'  => 'manage_options',
+				'menu_slug'   => 'alecadd_testimonial_shortcode',
+				'callback'    => array( $this->callbacks, 'shortcodePage' )
 			)
 		);
 
@@ -63,18 +112,18 @@ class TestimonialController extends BaseController
 	public function testimonial_cpt ()
 	{
 		$labels = array(
-			'name' => 'Testimonials',
+			'name'          => 'Testimonials',
 			'singular_name' => 'Testimonial'
 		);
 
 		$args = array(
-			'labels' => $labels,
-			'public' => true,
-			'has_archive' => false,
-			'menu_icon' => 'dashicons-testimonial',
+			'labels'              => $labels,
+			'public'              => true,
+			'has_archive'         => false,
+			'menu_icon'           => 'dashicons-testimonial',
 			'exclude_from_search' => true,
-			'publicly_queryable' => false,
-			'supports' => array( 'title', 'editor' )
+			'publicly_queryable'  => false,
+			'supports'            => array( 'title', 'editor' )
 		);
 
 		register_post_type ( 'testimonial', $args );
@@ -158,7 +207,7 @@ class TestimonialController extends BaseController
 
 		$data = array(
 			'name' => sanitize_text_field( $_POST['alecadd_testimonial_author'] ),
-			'email' => sanitize_text_field( $_POST['alecadd_testimonial_email'] ),
+			'email' => sanitize_email( $_POST['alecadd_testimonial_email'] ),
 			'approved' => isset($_POST['alecadd_testimonial_approved']) ? 1 : 0,
 			'featured' => isset($_POST['alecadd_testimonial_featured']) ? 1 : 0,
 		);
@@ -168,14 +217,14 @@ class TestimonialController extends BaseController
 	public function set_custom_columns($columns)
 	{
 		$title = $columns['title'];
-		$date = $columns['date'];
+		$date  = $columns['date'];
 		unset( $columns['title'], $columns['date'] );
 
-		$columns['name'] = 'Author Name';
-		$columns['title'] = $title;
+		$columns['name']     = 'Author Name';
+		$columns['title']    = $title;
 		$columns['approved'] = 'Approved';
 		$columns['featured'] = 'Featured';
-		$columns['date'] = $date;
+		$columns['date']     = $date;
 
 		return $columns;
 	}
@@ -205,7 +254,7 @@ class TestimonialController extends BaseController
 
 	public function set_custom_columns_sortable($columns)
 	{
-		$columns['name'] = 'name';
+		$columns['name']     = 'name';
 		$columns['approved'] = 'approved';
 		$columns['featured'] = 'featured';
 
