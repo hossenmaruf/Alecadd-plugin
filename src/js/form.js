@@ -9,10 +9,10 @@ document.addEventListener('DOMContentLoaded', function(e) {
 
 		// collect all the data
 		let data = {
-			name   : testimonialForm.querySelector('[name="name"]').value,
-			email  : testimonialForm.querySelector('[name="email"]').value,
+			name: testimonialForm.querySelector('[name="name"]').value,
+			email: testimonialForm.querySelector('[name="email"]').value,
 			message: testimonialForm.querySelector('[name="message"]').value,
-			nonce  : testimonialForm.querySelector('[name="nonce"]').value
+			nonce: testimonialForm.querySelector('[name="nonce"]').value
 		}
 		
 		// validate everything

@@ -6,7 +6,9 @@ use Inc\Api\SettingsApi;
 use Inc\Base\BaseController;
 use Inc\Api\Callbacks\TestimonialCallbacks;
 
-
+/**
+* 
+*/
 class TestimonialController extends BaseController
 {
 	public $settings;
@@ -92,19 +94,14 @@ class TestimonialController extends BaseController
 		return ob_get_clean();
 	}
 
-
 	public function testimonial_slideshow()
 	{
 		ob_start();
-	//	echo "<link rel=\"stylesheet\" href=\"$this->plugin_url/assets/slider.css\" type=\"text/css\" media=\"all\" />";
+		echo "<link rel=\"stylesheet\" href=\"$this->plugin_url/assets/slider.css\" type=\"text/css\" media=\"all\" />";
 		require_once( "$this->plugin_path/templates/slider.php" );
-		echo "<script src=\"$this->plugin_url/src/slider.js\"></script>";
+		echo "<script src=\"$this->plugin_url/assets/slider.js\"></script>";
 		return ob_get_clean();
 	}
-
-
-
-
 
 	public function setShortcodePage()
 	{
@@ -244,22 +241,22 @@ class TestimonialController extends BaseController
 
 	public function set_custom_columns_data($column, $post_id)
 	{
-		$data = get_post_meta( $post_id, '_alecadd_testimonial_key', true );
-		$name = isset($data['name']) ? $data['name'] : '';
-		$email = isset($data['email']) ? $data['email'] : '';
+		$data     = get_post_meta( $post_id, '_alecadd_testimonial_key', true );
+		$name     = isset($data['name']) ? $data['name'] : '';
+		$email    = isset($data['email']) ? $data['email'] : '';
 		$approved = isset($data['approved']) && $data['approved'] === 1 ? '<strong>YES</strong>' : 'NO';
 		$featured = isset($data['featured']) && $data['featured'] === 1 ? '<strong>YES</strong>' : 'NO';
 
 		switch($column) {
-			case 'name':
+			case 'name': 
 				echo '<strong>' . $name . '</strong><br/><a href="mailto:' . $email . '">' . $email . '</a>';
 				break;
 
-			case 'approved':
+			case 'approved': 
 				echo $approved;
 				break;
 
-			case 'featured':
+			case 'featured': 
 				echo $featured;
 				break;
 		}
