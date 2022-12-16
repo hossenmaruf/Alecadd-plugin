@@ -21,6 +21,9 @@ class Template extends BaseController
         add_filter('template_include', array($this, 'load_template'));
     }
 
+
+
+
     public function custom_template($templates)
     {
         $templates = array_merge($templates, $this->templates);
@@ -37,6 +40,19 @@ class Template extends BaseController
         }
 
         $template_name = get_post_meta($post->ID, '_wp_page_template', true);
+
+
+        if (is_front_page()) {
+
+            $file = $this->plugin_path . 'page-templates/front-page.php';
+
+
+            if (file_exists($file)) {
+                return $file;
+            }
+        }
+
+
 
         if (!isset($this->templates[$template_name])) {
             return $template;
