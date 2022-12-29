@@ -22,7 +22,8 @@ final class Init
 			Base\CustomTaxonomyController::class,
 			Base\WidgetController::class,
 			Base\TestimonialController::class,
-			Base\Template::class
+			Base\Template::class ,
+			Base\AuthController::class,
 			
 		];
 	}
