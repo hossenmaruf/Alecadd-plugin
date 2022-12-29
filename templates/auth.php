@@ -1,9 +1,9 @@
-<form id="alecaddd-auth-form" action="#" method="post" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
+<form id="alecadd-auth-form" action="#" method="post" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
     <div class="auth-btn">
-        <input class="submit_button" type="button" value="Login" id="alecaddd-show-auth-form">
+        <input class="submit_button" type="button" value="Login" id="alecadd-show-auth-form">
     </div>
-    <div id="alecaddd-auth-container" class="auth-container">
-        <a id="alecaddd-auth-close" class="close" href="#">&times;</a>
+    <div id="alecadd-auth-container" class="auth-container">
+        <a id="alecadd-auth-close" class="close" href="#">&times;</a>
         <h2>Site Login</h2>
         <label for="username">Username</label>
         <input id="username" type="text" name="username">
@@ -17,6 +17,6 @@
                 href="<?php echo wp_registration_url(); ?>">Register</a>
         </p>
 
-        <?php wp_nonce_field( 'ajax-login-nonce', 'alecaddd_auth' ); ?>
+        <?php wp_nonce_field( 'ajax-login-nonce', 'alecadd_auth' ); ?>
     </div>
 </form>
