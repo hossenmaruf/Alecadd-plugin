@@ -13,8 +13,8 @@ class Enqueue extends BaseController
 {
 	public function register() {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue2' ) );
-		add_action( 'wp_head', array( $this, 'add_auth_template' ) );
+	//	add_action( 'wp_enqueue_scripts', array( $this, 'enqueue2' ) );
+	//	add_action( 'wp_head', array( $this, 'add_auth_template' ) );
 	}
 	
 	function enqueue() {
